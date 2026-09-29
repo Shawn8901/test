@@ -1,0 +1,62 @@
+{
+  "version": "1",
+  "sources": {
+    "disko": {
+      "type": "GitHub",
+      "fetchType": "tarball",
+      "owner": "nix-community",
+      "repo": "disko",
+      "branch": "master",
+      "revision": "cedd626e11b635470fa6f9fdb8ad79b0075dd7f9",
+      "url": "https://github.com/nix-community/disko/archive/cedd626e11b635470fa6f9fdb8ad79b0075dd7f9.tar.gz",
+      "hash": "sha256-3hSJlv8mUVnZPMWK2+CM7a9O+nR6Z4mCh27NfLCmTPc="
+    },
+    "home-manager": {
+      "type": "GitHub",
+      "fetchType": "tarball",
+      "owner": "nix-community",
+      "repo": "home-manager",
+      "branch": "master",
+      "revision": "095fef2f265c3c0da4fe315efba8f8a04495ab34",
+      "url": "https://github.com/nix-community/home-manager/archive/095fef2f265c3c0da4fe315efba8f8a04495ab34.tar.gz",
+      "hash": "sha256-X6xa6sGA7RnJQuZGbFMC+K+KToWAlBDCCjJXfTwEPsw="
+    },
+    "nixpkgs": {
+      "type": "Tarball",
+      "fetchType": "tarball",
+      "origin": "https://channel.hydra.pointjig.de/nixos-unstable-custom/nixexprs.tar.zst",
+      "url": "https://channel.hydra.pointjig.de/nixos-unstable-custom/tarballs/nixos-26.11pre1103274.6786791ed657.tar.zst?narHash=sha256-2CKksa3/hcBkLwExBHi6kJkH9hj7zPKphacZ0nefsho=&lastModified=1793184934",
+      "hash": "sha256-2CKksa3/hcBkLwExBHi6kJkH9hj7zPKphacZ0nefsho="
+    },
+    "preservation": {
+      "type": "GitHub",
+      "fetchType": "tarball",
+      "owner": "nix-community",
+      "repo": "preservation",
+      "branch": "main",
+      "revision": "00be7f7dd1a11ae0605386f2272288de7cf33abe",
+      "url": "https://github.com/nix-community/preservation/archive/00be7f7dd1a11ae0605386f2272288de7cf33abe.tar.gz",
+      "hash": "sha256-s/A2rSO2Ndf8Y5yiouesnI/3Zkn9pmVGF2NxFxOUvx8="
+    },
+    "rycee": {
+      "type": "Git",
+      "fetchType": "git",
+      "branch": "master",
+      "revision": "ed9233d15254387c12c5c53939ce2162712cf5fb",
+      "url": "https://gitlab.com/rycee/nur-expressions.git",
+      "hash": "sha256-F1waPip2dUnsWIHveBjgacmUVmSJZChnhShWGNmSoYo=",
+      "lastModified": 1793160255,
+      "submodules": false
+    },
+    "sops-nix": {
+      "type": "GitHub",
+      "fetchType": "tarball",
+      "owner": "mic92",
+      "repo": "sops-nix",
+      "branch": "master",
+      "revision": "60182817ee048ac94b4c68ea76d5ef2e8aac730d",
+      "url": "https://github.com/mic92/sops-nix/archive/60182817ee048ac94b4c68ea76d5ef2e8aac730d.tar.gz",
+      "hash": "sha256-Y/JIHTnMlOabDfyaSBubWGLDIVGihLEUuoMhFvQKaDo="
+    }
+  }
+}
