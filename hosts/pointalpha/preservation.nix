@@ -1,0 +1,69 @@
+{ config, ... }: {
+
+  boot.initrd.systemd.services.initrd-rollback-root = {
+    after = [ "zfs-import-rpool.service" ];
+    requires = [ "zfs-import-rpool.service" ];
+    before = [ "sysroot.mount" ];
+    wantedBy = [ "initrd.target" ];
+    description = "Rollback root fs";
+    serviceConfig = {
+      Type = "oneshot";
+      ExecStart = "${config.boot.zfs.package}/sbin/zfs rollback -r rpool/local/root@blank";
+    };
+  };
+
+  security.sudo.extraConfig = ''
+    Defaults lecture = never
+  '';
+
+  preservation = {
+    enable = true;
+    preserveAt."/persist" = {
+      directories = [
+        {
+          directory = "/var/lib/systemd";
+          inInitrd = true;
+        }
+        "/etc/NetworkManager/system-connections"
+        "/var/lib/bluetooth"
+        "/var/lib/cups"
+        "/var/lib/libvirt"
+        "/var/lib/NetworkManager"
+        "/var/lib/nixos"
+        "/var/lib/prometheus2"
+        "/var/lib/userborn"
+        "/var/lib/upower"
+        "/var/lib/mysql"
+      ];
+      files = [
+        {
+          file = "/etc/ssh/ssh_host_rsa_key";
+          how = "symlink";
+          inInitrd = true;
+          configureParent = true;
+        }
+        {
+          file = "/etc/ssh/ssh_host_ed25519_key";
+          how = "symlink";
+          inInitrd = true;
+          configureParent = true;
+        }
+        {
+          file = "/etc/machine-id";
+          inInitrd = true;
+        }
+      ];
+    };
+  };
+
+  systemd.services.systemd-machine-id-commit = {
+    unitConfig.ConditionPathIsMountPoint = [
+      ""
+      "/persist/etc/machine-id"
+    ];
+    serviceConfig.ExecStart = [
+      ""
+      "systemd-machine-id-setup --commit --root /persist"
+    ];
+  };
+}

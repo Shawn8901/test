@@ -1,0 +1,108 @@
+{
+  sources,
+  config,
+  pkgs,
+  ...
+}:
+{
+
+  imports = [
+    ./hardware.nix
+    "${sources.preservation}/module.nix"
+    ./preservation.nix
+    "${sources.home-manager}/nixos"
+  ];
+
+  home-manager = {
+    useUserPackages = true;
+    extraSpecialArgs = {
+      inherit sources;
+    };
+    users.shawn.imports = [ ./home.nix ];
+  };
+
+  includes = {
+    desktop.enable = true;
+    monitoree.enable = true;
+    managed-users.enable = true;
+  };
+
+  sops = {
+    defaultSopsFile = ./secrets.yaml;
+    secrets = {
+      zrepl = { };
+      hydra-queue-runner-token.owner = "hydra-builder";
+    };
+  };
+
+  environment.systemPackages = [
+    pkgs.solaar
+    pkgs.android-tools
+  ];
+  nix.settings = {
+    keep-outputs = true;
+    keep-derivations = true;
+    cores = 8;
+    auto-allocate-uids = true;
+    use-cgroups = true;
+    system-features = [ "gccarch-x86-64-v3" ];
+    experimental-features = [
+      "auto-allocate-uids"
+      "cgroups"
+    ];
+    extra-system-features = [
+      "uid-range"
+    ];
+  };
+  services = {
+    smartd.devices = [ { device = "/dev/nvme1"; } ];
+    pipewire.wireplumber.extraConfig = {
+      "10-bluez"."monitor.bluez.properties" = {
+        "bluez5.enable-sbc-xq" = true;
+        "bluez5.enable-msbc" = true;
+        "bluez5.enable-hw-volume" = true;
+      };
+      "11-bluetooth-policy"."wireplumber.settings"."bluetooth.autoswitch-to-headset-profile" = false;
+    };
+    zrepl.settings.jobs = [
+      {
+        name = "pointalpha_safe";
+        type = "source";
+        filesystems = {
+          "rpool/safe<" = true;
+        };
+        snapshotting = {
+          type = "periodic";
+          interval = "1h";
+          prefix = "zrepl_";
+        };
+        send = {
+          encrypted = false;
+          compressed = true;
+        };
+        serve = {
+          type = "tls";
+          listen = ":8888";
+          ca = ../../hosts/tank/zrepl.crt;
+          cert = ./zrepl.crt;
+          key = config.sops.secrets.zrepl.path;
+          client_cns = [ "tank" ];
+        };
+      }
+    ];
+    hydra-builder = {
+      enable = true;
+      authorizationFile = config.sops.secrets.hydra-queue-runner-token.path;
+      queueRunnerAddr = "https://queue-runner.hydra.pointjig.de";
+    };
+  };
+  programs = {
+    ausweisapp = {
+      enable = true;
+      openFirewall = true;
+    };
+    kdeconnect.enable = true;
+    droidcam.enable = true;
+  };
+  boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
+}
