@@ -48,6 +48,11 @@
         bantime = "24h";
         bantime-increment.enable = true;
       };
+      custom-auto-upgrade = {
+        enable = true;
+        url = "https://github.com/shawn8901/test";
+        dates = "04:00";
+      };
     };
   };
 }

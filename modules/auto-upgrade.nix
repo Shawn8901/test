@@ -35,8 +35,8 @@ in
         coreutils
         gitMinimal
         hostname
-        nix
-        systemdMinimal
+        nh
+        systemd
       ];
       script = ''
         set -euo pipefail
@@ -53,7 +53,7 @@ in
 
         cd "$TMP_DIR"
         echo "Building configuration..."
-        nix-build . -A $(hostname).config.system.build.toplevel
+        nh os build -f . $(hostname)
 
         echo "Checking if a reboot is required..."
         booted="$(readlink /run/booted-system/{initrd,kernel,kernel-modules})"
@@ -61,11 +61,12 @@ in
 
         if [ "''${booted}" = "''${built}" ]; then
           echo "No reboot required. Switching to the new configuration..."
-          ./result/bin/switch-to-configuration switch
+          nh os switch -f . $(hostname)
         else
           echo "Reboot required. Switching to the new configuration and rebooting..."
-          ./result/bin/switch-to-configuration boot
-          shutdown -r +1
+          nh os boot -f . $(hostname)
+          sleep 5
+          reboot
         fi
       '';
     };
