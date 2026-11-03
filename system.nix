@@ -19,4 +19,5 @@ let
 in
 lib.mergeAttrsList [
   (mkSystem "pointalpha")
+  (mkSystem "tank")
 ]
