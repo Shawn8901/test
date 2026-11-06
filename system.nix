@@ -18,6 +18,7 @@ let
     );
 in
 lib.mergeAttrsList [
+  (mkSystem "beacon")
   (mkSystem "pointalpha")
   (mkSystem "shelter")
   (mkSystem "tank")

@@ -181,6 +181,38 @@ in
           };
         }
         {
+          name = "beacon";
+          type = "pull";
+          root_fs = "ztank/backup/beacon";
+          interval = "1h";
+          connect = {
+            type = "tls";
+            address = "beacon:8888";
+            ca = ../beacon/zrepl.crt;
+            cert = ./zrepl.crt;
+            key = secrets.zrepl.path;
+            server_cn = "beacon";
+          };
+          recv.placeholder.encryption = "inherit";
+          pruning = {
+            keep_sender = [
+              { type = "not_replicated"; }
+              {
+                type = "grid";
+                grid = "3x1d";
+                regex = "^zrepl_.*";
+              }
+            ];
+            keep_receiver = [
+              {
+                type = "grid";
+                grid = "7x1d(keep=all) | 3x30d";
+                regex = "^zrepl_.*";
+              }
+            ];
+          };
+        }
+        {
           name = "zenbook_sink";
           type = "sink";
           root_fs = "ztank/backup/zenbook";
