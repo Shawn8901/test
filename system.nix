@@ -22,4 +22,5 @@ lib.mergeAttrsList [
   (mkSystem "pointalpha")
   (mkSystem "shelter")
   (mkSystem "tank")
+  (mkSystem "watchtower")
 ]
