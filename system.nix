@@ -23,4 +23,5 @@ lib.mergeAttrsList [
   (mkSystem "shelter")
   (mkSystem "tank")
   (mkSystem "watchtower")
+  (mkSystem "zenbook")
 ]
