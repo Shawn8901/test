@@ -21,7 +21,10 @@
       dhcpcd.enable = lib.mkDefault false;
       useNetworkd = lib.mkDefault true;
     };
-    hardware.bluetooth.enable = lib.mkDefault false;
+    hardware = {
+      bluetooth.enable = lib.mkDefault false;
+      graphics.enable = false;
+    };
     security.acme = {
       acceptTerms = true;
       defaults.email = lib.mkDefault "shawn@pointjig.de";

@@ -77,6 +77,16 @@
       "revision": "89a234ce2daf6e568a7d4b4fe250afdd23d84e20",
       "url": "https://github.com/mic92/sops-nix/archive/89a234ce2daf6e568a7d4b4fe250afdd23d84e20.tar.gz",
       "hash": "sha256-ZlE4BtMjWhfC6rFXLO9Qimn36Ene1INqCgKDDvazjhc="
+    },
+    "valheim-nix": {
+      "type": "GitHub",
+      "fetchType": "tarball",
+      "owner": "gerrydoro",
+      "repo": "valheim-nix",
+      "branch": "main",
+      "revision": "2ed591679bdc1fa117a375cd8720cd59b37e51c6",
+      "url": "https://github.com/gerrydoro/valheim-nix/archive/2ed591679bdc1fa117a375cd8720cd59b37e51c6.tar.gz",
+      "hash": "sha256-1dc0zWAjxqmB27czGmDUrVm7t4+ydgKlmQB/4kBOeyY="
     }
   }
 }

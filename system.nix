@@ -20,6 +20,7 @@ in
 lib.mergeAttrsList [
   (mkSystem "beacon")
   (mkSystem "pointalpha")
+  (mkSystem "pointjig")
   (mkSystem "shelter")
   (mkSystem "tank")
   (mkSystem "watchtower")
