@@ -25,6 +25,12 @@
       "type": "github_refs",
       "value": "shawn8901 test heads",
       "emailresponsible": false
+    },
+    "pulls": {
+      "type": "githubpulls",
+      "value": "shawn8901 test",
+      "emailresponsible": false
     }
+
   }
 }

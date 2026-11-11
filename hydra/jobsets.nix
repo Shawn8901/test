@@ -1,6 +1,7 @@
 {
   nixpkgs,
   refs,
+  pulls,
   system ? builtins.currentSystem,
   ...
 }:
@@ -9,6 +10,7 @@ let
   inherit (pkgs) lib;
 
   branches = builtins.fromJSON (builtins.readFile refs);
+  pullRequests = builtins.fromJSON (builtins.readFile pulls);
 
   mkBuildJob = name: {
     schedulingshares = 100;
@@ -28,8 +30,36 @@ let
       value = "http://github.com/shawn8901/test ${name}";
     };
   };
-  desc = lib.mapAttrs (branch: info: mkBuildJob branch) branches;
+
+  mkPrJob = name: {
+    schedulingshares = 100;
+    description = "Build PR ${name}";
+    checkinterval = "600";
+    enabled = "1";
+    enableemail = false;
+    emailoverride = "";
+    keepnr = 1;
+    hidden = false;
+    type = 0;
+    nixexprinput = "src";
+    nixexprpath = "hydra/release.nix";
+    inputs = {
+      src = {
+        emailresponsible = false;
+        type = "git";
+        value = "http://github.com/shawn8901/test ${name}";
+      };
+      lockUpdate = lib.hasPrefix "update-" name;
+    };
+  };
+
+  branchJobs = lib.mapAttrs (branch: info: mkBuildJob branch) (
+    lib.filterAttrs (branch: v: (!lib.hasPrefix "update-" branch)) branches
+  );
+  prJobs = lib.mapAttrs (branch: info: mkPrJob branch) pullRequests;
+  desc = branchJobs // prJobs;
   log = {
+    prs = pullRequests;
     branches = branches;
     jobsets = desc;
   };
