@@ -1,6 +1,16 @@
 {
   "version": "1",
   "sources": {
+    "asus-numberpad-driver": {
+      "type": "GitHub",
+      "fetchType": "tarball",
+      "owner": "asus-linux-drivers",
+      "repo": "asus-numberpad-driver",
+      "branch": "master",
+      "revision": "ae5b3293681abec518b728a88da17e5e118bd4ce",
+      "url": "https://github.com/asus-linux-drivers/asus-numberpad-driver/archive/ae5b3293681abec518b728a88da17e5e118bd4ce.tar.gz",
+      "hash": "sha256-OWy+q4vP57v6v0SeSkDo2wmXsjhTFc4wE5vaI+CoTeU="
+    },
     "disko": {
       "type": "GitHub",
       "fetchType": "tarball",
