@@ -15,7 +15,7 @@
       ];
     };
     networking = {
-      firewall.logRefusedConnections = lib.mkDefault false;
+      firewall.logRefusedConnections = lib.mkDefault true;
       networkmanager.enable = false;
       nftables.enable = true;
       dhcpcd.enable = lib.mkDefault false;
