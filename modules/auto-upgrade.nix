@@ -36,6 +36,7 @@ in
         gitMinimal
         hostname
         nh
+        nix
         systemd
       ];
       script = ''
@@ -53,18 +54,21 @@ in
 
         cd "$TMP_DIR"
         echo "Building configuration..."
-        nh os build -f . $(hostname)
+        nix-build . -A $(hostname).config.system.build.toplevel
+        ls -alh ./result
 
         echo "Checking if a reboot is required..."
         booted="$(readlink /run/booted-system/{initrd,kernel,kernel-modules})"
         built="$(readlink ./result/{initrd,kernel,kernel-modules})"
 
+
+
         if [ "''${booted}" = "''${built}" ]; then
           echo "No reboot required. Switching to the new configuration..."
-          nh os switch -f . $(hostname)
+          ./result/bin/switch-to-configuration switch
         else
           echo "Reboot required. Switching to the new configuration and rebooting..."
-          nh os boot -f . $(hostname)
+          ./result/bin/switch-to-configuration boot
           sleep 5
           reboot
         fi
