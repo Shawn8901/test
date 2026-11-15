@@ -29,7 +29,10 @@ in
 
   includes = {
     managed-users.enable = true;
-    mailserver.enable = true;
+    mailserver = {
+      enable = true;
+      syncFromFQDN = "mail.pointjig.de";
+    };
     monitoree.enable = true;
     postgresql.enable = true;
     server.enable = true;
