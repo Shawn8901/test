@@ -27,9 +27,9 @@
       "owner": "nix-community",
       "repo": "home-manager",
       "branch": "master",
-      "revision": "a1293da7dd8e497e08d26173f97e2976b36a31ea",
-      "url": "https://github.com/nix-community/home-manager/archive/a1293da7dd8e497e08d26173f97e2976b36a31ea.tar.gz",
-      "hash": "sha256-awkBBs5ctFKgEYjpNGpi3t/VqF589n5EWfdinRb2gNI="
+      "revision": "4246683484a7b4ced0a0d880974b67137f092289",
+      "url": "https://github.com/nix-community/home-manager/archive/4246683484a7b4ced0a0d880974b67137f092289.tar.gz",
+      "hash": "sha256-sTnTYa/VMHpUWVYb+GNY2xvlUkLpXzTJ8WCT3AAQ+hI="
     },
     "nixpkgs": {
       "type": "Tarball",
@@ -52,10 +52,10 @@
       "type": "Git",
       "fetchType": "git",
       "branch": "master",
-      "revision": "bc8477f9b13385aec9b369de1c3e4479e07bbbb8",
+      "revision": "1f39e7ebb068f7b3ba489137ccfbcbc108d6e58b",
       "url": "https://gitlab.com/rycee/nur-expressions.git",
-      "hash": "sha256-Aaf6OFIz6T+LfbnewyIvX9DQ+QhyolsFTSYUzKT53vA=",
-      "lastModified": 1794775650,
+      "hash": "sha256-Sg9byhoKo66ftwK7r7p8bhxeD4/t6nGvKU+U/O/W8Lw=",
+      "lastModified": 1794888279,
       "submodules": false
     },
     "snm": {
@@ -74,9 +74,9 @@
       "owner": "mic92",
       "repo": "sops-nix",
       "branch": "master",
-      "revision": "11e5885d241743ff0193465d533b20e754bc3ce0",
-      "url": "https://github.com/mic92/sops-nix/archive/11e5885d241743ff0193465d533b20e754bc3ce0.tar.gz",
-      "hash": "sha256-3q/hxp/flW1PnV3Dx+H3p8kHGEHJ7251BqVMNsAAB9E="
+      "revision": "7c637afdccdf9bcf35c4a2d67b58a77c1fd843a4",
+      "url": "https://github.com/mic92/sops-nix/archive/7c637afdccdf9bcf35c4a2d67b58a77c1fd843a4.tar.gz",
+      "hash": "sha256-Y28AMB8lyKjASdJ0BVsR2AqR1cUsVuo8RVVpzHoECho="
     },
     "valheim-nix": {
       "type": "GitHub",
